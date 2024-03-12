@@ -21,12 +21,7 @@ export const one  = async (req) =>{
 export const post  = async (req) =>{
     try {
         await Product.sync(); 
-        const {product_name , product_price , is_stock} = req.body; 
-        const createProduct = await Product.create({
-            product_name: product_name,
-            product_price: product_price,
-            is_stock: is_stock
-        })
+        const createProduct = await Product.create( req.body)
         return {data: createProduct}; 
     } catch (error) {
         return {error: error.message}; 
@@ -34,13 +29,8 @@ export const post  = async (req) =>{
 }
 export const update  = async (req) =>{
     try {
-        const {product_name , product_price , is_stock} = req.body;
         const {product_id} = req.params;  
-         const productUpdate = await Product.update({
-          product_name: product_name,
-          product_price: product_price,
-          is_stock: is_stock
-      }, {where:{ product_id: product_id }}); 
+         const productUpdate = await Product.update(req.body, {where:{ product_id: product_id }}); 
         return {data: productUpdate}; 
     } catch (error) {
         return {error: error.message}; 
@@ -49,7 +39,7 @@ export const update  = async (req) =>{
 export const del  = async (req) =>{
     try {
         const {product_id} = req.params;  
-        const deleteProduct = await Product.destroy( {where:{ product_id: product_id }}); 
+        const deleteProduct = await Product.update( req.body , {where:{ product_id: product_id }}); 
         return {data: deleteProduct}; 
     } catch (error) {
         return {error: error.message}; 

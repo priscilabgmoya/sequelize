@@ -19,8 +19,17 @@ Product.init({
         type: DataTypes.FLOAT(10,2), 
         allowNull: false
     },
-    is_stock: {
-        type: DataTypes.BOOLEAN
+    product_quantity: {
+        type: DataTypes.INTEGER, 
+
+    }, 
+    product_price_total:{
+        type: DataTypes.FLOAT(10,2), 
+
+    },
+    is_active: {
+        type: DataTypes.BOOLEAN, 
+
     }
 },{
     sequelize, 
