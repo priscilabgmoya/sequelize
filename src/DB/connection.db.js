@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-export const sequelize = new Sequelize(process.env.DB, process.env.USER, process.env.PASS, {
-    host: process.env.HOST,
-    dialect:  'mysql' ,
+export const sequelize = new Sequelize('product_test', 'root', '1234', {
+    host: 'localhost',
+    dialect:  'mariadb' ,
 });
 export const testConnection = async () =>{
     try {

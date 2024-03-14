@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import { testConnection } from "../DB/connection.db.js";
 import { router } from "../router/product.routes.js";
-
+import cors from 'cors'
 export class Server {
     constructor() {
         this.app = express();
@@ -14,6 +14,7 @@ export class Server {
     middlewares() {
         this.app.use(morgan("dev"));
         this.app.use(express.json());
+        this.app.use(cors())
     }
     router() {
         this.app.get("/", (req, res)=>{
